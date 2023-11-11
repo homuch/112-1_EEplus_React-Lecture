@@ -1,14 +1,15 @@
 import "./styles/global.css";
 import "./styles/main-area.css";
 import postData from "./assets/posts.json";
-
+import { useState } from "react";
 import MyNavBar from "./components/MyNavBar";
 import MyPostCard from "./components/MyPostCard";
 
 const App = () => {
+  const [searchText, setSearchText] = useState("");
   return (
     <div>
-      <MyNavBar />
+      <MyNavBar searchText={searchText} setSearchText={setSearchText} />
       <main className="post-card-container">
         {postData.map((post, i) => (
           <MyPostCard
