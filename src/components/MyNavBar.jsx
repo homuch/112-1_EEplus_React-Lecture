@@ -1,7 +1,7 @@
 import "../styles/nav-bar.css";
 import PropTypes from "prop-types";
 
-const MyNavBar = ({ searchText, setSearchText }) => {
+const MyNavBar = ({ searchText, setSearchText, onSearch }) => {
   return (
     <header className="nav-bar">
       <a className="nav-title" href="https://eeplus.ntuee.org/home">
@@ -16,7 +16,13 @@ const MyNavBar = ({ searchText, setSearchText }) => {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
-          <button type="submit" className="nav-search-submit">
+          <button
+            className="nav-search-submit"
+            onClick={(e) => {
+              e.preventDefault();
+              onSearch();
+            }}
+          >
             &#x2315;
           </button>
         </form>
@@ -42,6 +48,7 @@ const MyNavBar = ({ searchText, setSearchText }) => {
 MyNavBar.propTypes = {
   searchText: PropTypes.string.isRequired,
   setSearchText: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
 };
 
 export default MyNavBar;
