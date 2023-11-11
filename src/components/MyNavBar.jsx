@@ -1,6 +1,7 @@
 import "../styles/nav-bar.css";
+import PropTypes from "prop-types";
 
-const MyNavBar = () => {
+const MyNavBar = ({ searchText, setSearchText }) => {
   return (
     <header className="nav-bar">
       <a className="nav-title" href="https://eeplus.ntuee.org/home">
@@ -12,6 +13,8 @@ const MyNavBar = () => {
             className="nav-search-input"
             type="text"
             placeholder="Search For Posts"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
           />
           <button type="submit" className="nav-search-submit">
             &#x2315;
@@ -33,6 +36,12 @@ const MyNavBar = () => {
       </div>
     </header>
   );
+};
+
+// * not necessary
+MyNavBar.propTypes = {
+  searchText: PropTypes.string.isRequired,
+  setSearchText: PropTypes.func.isRequired,
 };
 
 export default MyNavBar;
