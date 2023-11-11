@@ -11,15 +11,31 @@ const App = () => {
     <div>
       <MyNavBar searchText={searchText} setSearchText={setSearchText} />
       <main className="post-card-container">
-        {postData.map((post, i) => (
-          <MyPostCard
-            key={i}
-            description={post.content}
-            postLink="https://eeplus.ntuee.org/"
-            postImg={`https://picsum.photos/1000/300?random=${i}`}
-            {...post}
-          />
-        ))}
+        {searchText
+          ? postData
+              .filter(
+                (post) =>
+                  post.title.includes(searchText) ||
+                  post.content.includes(searchText)
+              )
+              .map((post, i) => (
+                <MyPostCard
+                  key={i}
+                  description={post.content}
+                  postLink="https://eeplus.ntuee.org/"
+                  postImg={`https://picsum.photos/1000/300?random=${i}`}
+                  {...post}
+                />
+              ))
+          : postData.map((post, i) => (
+              <MyPostCard
+                key={i}
+                description={post.content}
+                postLink="https://eeplus.ntuee.org/"
+                postImg={`https://picsum.photos/1000/300?random=${i}`}
+                {...post}
+              />
+            ))}
       </main>
     </div>
   );
